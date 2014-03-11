@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name       GitHub Raw Links
-// @namespace  http://www.rjgesualdo.com/
-// @version    0.2.7
+// @name         GitHub Raw Links
+// @namespace    http://www.rjgesualdo.com/
+// @version      0.2.9
 // @description  adds raw file links to file icons on GitHub
-// @match      https://github.com/*
-// @copyright  2014+, Ray Gesualdo
+// @match      	 https://github.com/*
+// @copyright    2014+, Ray Gesualdo
 // ==/UserScript==
 
 (function($) {
@@ -16,7 +16,11 @@
             var $this = $(this),
                 $icon = $this.find('.icon .octicon-file-text'),
                 $href = $this.find('.content a').attr('href');
-                
+            
+			if ($href) {
+				$href = $href.replace('/blob/', '/');
+			}
+			
             $icon.wrap('<a href="https://raw.github.com'+$href+'" />');
             
         });
